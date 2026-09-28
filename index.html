@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAY 1000</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- 부팅 화면 -->
+  <div id="boot-screen">
+    <div class="boot-box">
+      <div class="boot-title">DAY1000 SYSTEM</div>
+
+      <div id="boot-text" class="boot-text"></div>
+
+      <div class="loading-bar">
+        <div id="loading-fill" class="loading-fill"></div>
+      </div>
+
+      <div id="boot-status" class="boot-status"></div>
+
+      <button id="startGame">START SYSTEM</button>
+    </div>
+  </div>
+  
+  <!-- 데스크톱 -->
+<main id="desktop" class="desktop hidden">
+
+  <!-- 바탕화면 아이콘 -->
+  <div class="desktop-icons">
+
+    <div class="desktop-icon" data-app="internet">
+      <img src="assets/icons/internet.png" alt="인터넷" />
+      <span>인터넷</span>
+    </div>
+
+    <div class="desktop-icon" data-app="recycle">
+      <img src="assets/icons/recycle-bin.png" alt="휴지통" />
+      <span>휴지통</span>
+    </div>
+
+    <div class="desktop-icon" data-app="album">
+      <img src="assets/icons/album.png" alt="앨범" />
+      <span>앨범</span>
+    </div>
+
+    <div class="desktop-icon" data-app="kakao">
+      <img src="assets/icons/kakao.png" alt="카카오톡" />
+      <span>카카오톡</span>
+    </div>
+
+    <div id="day1001-icon" class="desktop-icon hidden" data-app="day1001">
+      <img src="assets/icons/day1001.png" alt="DAY1001" />
+      <span>DAY1001</span>
+    </div>
+
+  </div>
+
+
+  <!-- 카카오톡 창 -->
+  <div id="kakao-window" class="app-window kakao-window hidden">
+
+    <!-- 상단 제목줄 -->
+    <div class="window-titlebar">
+      <span>카카오톡</span>
+      <button id="kakao-close" class="window-close">×</button>
+    </div>
+
+    <div class="kakao-body">
+
+      <!-- 왼쪽 대화 목록 -->
+      <div class="chat-list">
+
+        <div class="chat-item active" data-chat="mallang">
+          <div class="chat-avatar mallang-avatar">♥</div>
+
+          <div class="chat-info">
+            <div class="chat-name">말랑이❤️</div>
+            <div class="chat-preview">올 때 진로 한 병</div>
+          </div>
+
+          <div class="chat-time">10:02</div>
+        </div>
+
+
+        <div class="chat-item" data-chat="pudding">
+          <div class="chat-avatar pudding-avatar">🐶</div>
+
+          <div class="chat-info">
+            <div class="chat-name">푸딩 🐶</div>
+            <div class="chat-preview">멍멍</div>
+          </div>
+
+          <div class="chat-time">어제</div>
+        </div>
+
+
+        <div class="chat-item unknown-item" data-chat="unknown">
+          <div class="chat-avatar unknown-avatar">?</div>
+
+          <div class="chat-info">
+            <div class="chat-name">(알 수 없음)</div>
+            <div class="chat-preview">
+              현재 상태를 계속 확인하십시오.
+            </div>
+          </div>
+
+          <div class="chat-time">방금 전</div>
+        </div>
+
+      </div>
+
+
+      <!-- 오른쪽 채팅창 -->
+      <div class="chat-room">
+
+        <div class="chat-room-header">
+          <div id="chat-room-name">말랑이❤️</div>
+        </div>
+
+        <div id="chat-messages" class="chat-messages"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 앨범 창 -->
+<div id="album-window" class="app-window album-window hidden">
+
+  <!-- 상단 제목줄 -->
+  <div class="window-titlebar">
+    <span>앨범</span>
+    <button id="album-close" class="window-close">×</button>
+  </div>
+
+  <div class="album-body">
+
+    <!-- 왼쪽 썸네일 목록 -->
+    <div class="album-sidebar">
+
+      <div class="album-thumb active"
+           data-src="assets/images/photo_01.jpg"
+           data-name="photo_01.jpg"
+           data-unknown="false">
+        <img src="assets/images/photo_01.jpg" alt="photo_01" />
+        <span>photo_01.jpg</span>
+      </div>
+
+      <div class="album-thumb"
+           data-src="assets/images/photo_02.jpg"
+           data-name="photo_02.jpg"
+           data-unknown="false">
+        <img src="assets/images/photo_02.jpg" alt="photo_02" />
+        <span>photo_02.jpg</span>
+      </div>
+
+      <div class="album-thumb"
+           data-src="assets/images/photo_03.jpg"
+           data-name="photo_03.jpg"
+           data-unknown="false">
+        <img src="assets/images/photo_03.jpg" alt="photo_03" />
+        <span>photo_03.jpg</span>
+      </div>
+
+      <div class="album-thumb"
+           data-src="assets/images/photo_04.jpg"
+           data-name="photo_04.jpg"
+           data-unknown="false">
+        <img src="assets/images/photo_04.jpg" alt="photo_04" />
+        <span>photo_04.jpg</span>
+      </div>
+
+      <div class="album-thumb"
+           data-src="assets/images/photo_05.jpg"
+           data-name="photo_05.jpg"
+           data-unknown="false">
+        <img src="assets/images/photo_05.jpg" alt="photo_05" />
+        <span>photo_05.jpg</span>
+      </div>
+
+      <div class="album-thumb unknown-thumb"
+           data-src="assets/images/photo_unknown.png"
+           data-name="photo_■■.jpg"
+           data-unknown="true">
+        <img src="assets/images/photo_unknown.png" alt="photo_unknown" />
+        <span>photo_■■.jpg</span>
+      </div>
+
+    </div>
+
+
+    <!-- 오른쪽 큰 사진 영역 -->
+    <div class="album-viewer">
+
+      <div class="album-preview-wrap">
+        <img id="album-preview"
+             src="assets/images/photo_01.jpg"
+             alt="선택한 사진" />
+      </div>
+
+      <div class="album-info-bar">
+        <span id="album-file-name">photo_01.jpg</span>
+
+        <button id="album-details-button" class="album-details-button hidden">
+          세부 정보
+        </button>
+      </div>
+
+      <!-- 이상한 사진 전용 세부정보 -->
+      <div id="album-details-panel" class="album-details-panel hidden">
+
+        <div class="details-title">파일 세부 정보</div>
+
+        <div class="details-grid">
+          <span>파일 이름</span>
+          <span>photo_■■.jpg</span>
+
+          <span>파일 형식</span>
+          <span>JPG 이미지</span>
+
+          <span>생성 날짜</span>
+          <span class="corrupted-value">2026-10-03 11:32</span>
+
+          <span>분류 상태</span>
+          <span class="corrupted-value">UNCLASSIFIED</span>
+        </div>
+
+        <div class="system-warning">
+          이 파일은 시스템 상 현재 존재할 수 없습니다.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 휴지통 창 -->
+<div id="recycle-window" class="app-window recycle-window hidden">
+
+  <!-- 상단 제목줄 -->
+  <div class="window-titlebar">
+    <span>Recycle Bin</span>
+    <button id="recycle-close" class="window-close">×</button>
+  </div>
+
+  <div class="recycle-body">
+
+    <!-- 왼쪽 파일 목록 -->
+    <div class="recycle-file-list">
+
+      <div class="recycle-file active" data-file="delete">
+        <div class="file-icon">📄</div>
+        <div class="file-name">delete_log.txt</div>
+      </div>
+
+      <div class="recycle-file" data-file="restore">
+        <div class="file-icon">📄</div>
+        <div class="file-name">restore_history.log</div>
+      </div>
+
+      <div class="recycle-file" data-file="backup">
+        <div class="file-icon">📦</div>
+        <div class="file-name">day500_backup.zip</div>
+      </div>
+
+      <div class="recycle-file" data-file="readme">
+        <div class="file-icon">📝</div>
+        <div class="file-name">read_me.txt</div>
+      </div>
+
+    </div>
+
+    <!-- 오른쪽 내용 -->
+    <div class="recycle-viewer">
+
+      <div class="recycle-viewer-header">
+        <span id="recycle-file-title">delete_log.txt</span>
+      </div>
+
+      <pre id="recycle-file-content" class="recycle-file-content"></pre>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 인터넷 창 -->
+<div id="internet-window" class="app-window internet-window hidden">
+
+  <!-- 상단 제목줄 -->
+  <div class="window-titlebar">
+    <span>Internet Explorer</span>
+    <button id="internet-close" class="window-close">×</button>
+  </div>
+
+  <!-- 브라우저 툴바 -->
+  <div class="browser-toolbar">
+
+    <button class="browser-tool-button">←</button>
+    <button class="browser-tool-button">→</button>
+    <button class="browser-tool-button">⟳</button>
+
+    <div class="browser-address-label">주소</div>
+
+    <div class="browser-address-bar">
+      local://day1000/manual
+    </div>
+
+  </div>
+
+  <!-- 문서 영역 -->
+  <div class="browser-page">
+
+    <div class="manual-page">
+
+      <div class="manual-header">
+        TEMPORAL DATA HANDLING MANUAL
+      </div>
+
+      <div class="manual-subtitle">
+        시간 불일치 데이터 처리 지침
+      </div>
+
+      <div class="manual-rule">
+        <span class="manual-number">01</span>
+        <p>
+          현재 날짜 이후에 생성된 데이터가 발견된 경우,
+          해당 데이터를 임의로 삭제하려고 시도하지 마십시오.
+        </p>
+      </div>
+
+      <div class="manual-rule">
+        <span class="manual-number">02</span>
+        <p>
+          삭제 후 복구 이력 없이 다시 나타난 데이터는
+          현재 날짜에는 존재해서는 안 되는 데이터로 간주합니다.
+        </p>
+      </div>
+
+      <div class="manual-rule">
+        <span class="manual-number">03</span>
+        <p>
+          데이터를 임의로 삭제하려고 시도할 시,
+          현재 날짜에 갇혀 넘어갈 수 없습니다.
+        </p>
+      </div>
+
+      <div class="manual-rule">
+        <span class="manual-number">04</span>
+        <p>
+          해당 데이터는 생성 예정 날짜로 이동되어야 합니다.
+        </p>
+      </div>
+
+      <div class="manual-rule">
+        <span class="manual-number">05</span>
+        <p>
+          대상 날짜의 폴더가 바탕화면에 표시되기 전까지
+          컴퓨터를 종료하지 마십시오.
+        </p>
+      </div>
+
+      <div class="manual-rule warning-rule">
+        <span class="manual-number">06</span>
+        <p>
+         대상 날짜의 폴더를 육안으로 확인하셨다면,
+         현재 상태를 확인하십시오.
+        </p>
+      </div>
+
+      <div class="manual-result">
+        <div class="manual-result-label">
+          감지된 대상 기록
+        </div>
+
+        <div class="manual-result-file">
+          photo_■■.jpg
+        </div>
+
+        <div class="manual-result-row">
+          생성 예정 시점
+          <strong>2026-10-03 11:32</strong>
+        </div>
+
+        <div class="manual-result-row">
+          권장 귀속 날짜
+          <strong>DAY 1001</strong>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+  <!-- 기록 이동 알림 -->
+  <div id="move-notice" class="app-window move-notice hidden" role="status" aria-live="polite" aria-atomic="true">
+    <div class="window-titlebar">DAY1000 SYSTEM</div>
+    <div class="move-notice-body">
+      <strong id="move-status">기록 이동 중...</strong>
+      <p>photo_■■.jpg</p>
+      <p id="move-detail">DAY 1000 → DAY 1001</p>
+    </div>
+  </div>
+
+  <!-- DAY1001 엔딩 편지 -->
+  <div id="letter-window" class="app-window letter-window hidden" role="dialog" aria-labelledby="letter-title">
+    <div class="window-titlebar">
+      <span id="letter-title">DAY1001_MESSAGE.txt</span>
+      <button id="letter-close" class="window-close" aria-label="편지 닫기">×</button>
+    </div>
+
+    <div class="letter-body">
+      <pre id="letter-system" class="letter-system">SYSTEM MESSAGE
+
+DAY 1000 archive completed.
+DAY 1001 is ready.
+
+Opening personal message...</pre>
+
+      <!-- 편지 내용을 수정하려면 아래 letter-content 안의 글을 변경하세요. -->
+      <div id="letter-content" class="letter-content hidden">민혁아, 어땠어?
+설마 무서웠던 건 아니지?
+재밌었으면 좋겠다!
+
+1000일 동안 우리 사진 진짜 많이 찍었지.
+별 거 아닌 것도 남기다보니 나중에 다시 볼 때 새록새록하고 좋더라.
+
+그런데 민혁아, 당연한 얘기지만,
+지금까지 찍은 사진보다 앞으로 찍을 사진이 훨씬 많았으면 좋겠어.
+
+앞으로도 함께 밥을 먹고,
+같이 예쁜 곳 놀러가고,
+별 거 아닌 걸로 깔깔 웃고,
+그렇게 지내면서
+마음으로, 그리고 사진으로 너와 그 순간을 기록하고 싶어.
+
+1000일동안 나와 함께 해주어서 고마워.
+
+이제 1001일째로 넘어가자, 사랑해❤️
+
+- 윤서</div>
+    </div>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
