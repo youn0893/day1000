@@ -106,7 +106,14 @@ startButton.addEventListener("click", async () => {
 
   bootScreen.style.display = "none";
   desktop.classList.remove("hidden");
-});
+
+  setTimeout(() => {
+    if (!unknownUnread.classList.contains("hidden")) {
+      showUnknownToast();
+    }
+  }, 1000);
+
+}, { once: true });
 
 
 /* =========================
@@ -195,6 +202,37 @@ const chatRoomName = document.getElementById("chat-room-name");
 const chatMessages = document.getElementById("chat-messages");
 
 const chatRoom = document.querySelector(".chat-room");
+
+const unknownToast = document.getElementById("unknown-toast");
+const unknownUnread = document.getElementById("unknown-unread");
+const taskbar = document.getElementById("taskbar");
+let unknownToastTimer = null;
+
+function showUnknownToast() {
+
+  clearTimeout(unknownToastTimer);
+
+  if (!kakaoWindow.classList.contains("hidden") &&
+      chatRoom.classList.contains("unknown-room")) {
+    unknownToast.classList.remove("visible");
+    unknownToast.setAttribute("aria-hidden", "true");
+    unknownToastTimer = null;
+    openChat("unknown");
+    return;
+  }
+
+  unknownUnread.classList.remove("hidden");
+  unknownToast.style.bottom = taskbar.offsetHeight + "px";
+  unknownToast.setAttribute("aria-hidden", "false");
+  unknownToast.classList.add("visible");
+
+  unknownToastTimer = setTimeout(() => {
+    unknownToast.classList.remove("visible");
+    unknownToast.setAttribute("aria-hidden", "true");
+    unknownToastTimer = null;
+  }, 3300);
+
+}
 
 
 /* =========================
@@ -390,6 +428,11 @@ function openChat(chatId) {
   if (chatId === "unknown") {
 
   chatRoom.classList.add("unknown-room");
+  unknownUnread.classList.add("hidden");
+  clearTimeout(unknownToastTimer);
+  unknownToastTimer = null;
+  unknownToast.classList.remove("visible");
+  unknownToast.setAttribute("aria-hidden", "true");
 
   /* 첫 지시를 확인하면 앨범 활성화 */
   if (!albumUnlocked) {
@@ -643,11 +686,7 @@ day1001Icon.addEventListener("drop", event => {
       { type: "received", text: "DAY 1000 종료 조건이 충족되었습니다." },
       { type: "received", text: "DAY 1001 전환을 준비합니다." }
     );
-
-    if (!kakaoWindow.classList.contains("hidden") &&
-        chatRoom.classList.contains("unknown-room")) {
-      openChat("unknown");
-    }
+    showUnknownToast();
 
     setTimeout(() => {
       moveNotice.classList.add("hidden");
@@ -745,6 +784,7 @@ albumDetailsButton.addEventListener("click", event => {
     );
 
    recycleUnlockPending = true;
+   showUnknownToast();
 
   }
 
@@ -856,10 +896,10 @@ DAY 1000`
    해당 기록을 반복해서 삭제하지 마십시오.
 
 2. 복구 이력이 확인되지 않는 경우,
-   임의로 파일을 이동하거나 수정하지 마십시오.
+   임의로 이동하거나 수정하지 마십시오.
 
-3. 해당 지침을 확인하는 즉시 
-   현재 상태를 확인하십시오.
+3. 처리되지 않은 기록이 존재하는 동안
+   현재 날짜를 종료하지 마십시오.
 
 4. 다음 지시가 확인되기 전까지
    컴퓨터를 종료하지 마십시오.`
@@ -964,6 +1004,7 @@ function openRecycleFile(fileId) {
 `인터넷 내부 문서를 확인하십시오.`
     }
   );
+  showUnknownToast();
 }
 
 }
@@ -1041,6 +1082,7 @@ DAY1001`
 컴퓨터를 종료하지 마십시오.`
               }
             );
+            showUnknownToast();
 
           }
         });

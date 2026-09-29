@@ -104,7 +104,8 @@
           <div class="chat-info">
             <div class="chat-name">(알 수 없음)</div>
             <div class="chat-preview">
-              현재 상태를 계속 확인하십시오.
+              <span class="unknown-preview-text">현재 상태를 계속 확인하십시오.</span>
+              <span id="unknown-unread" class="unknown-unread" role="img" aria-label="읽지 않은 새 메시지"></span>
             </div>
           </div>
 
@@ -349,7 +350,7 @@
       <div class="manual-rule">
         <span class="manual-number">03</span>
         <p>
-          데이터를 임의로 삭제하려고 시도할 시,
+          임의로 데이터 삭제를 시도할 경우,
           현재 날짜에 갇혀 넘어갈 수 없습니다.
         </p>
       </div>
@@ -361,21 +362,14 @@
         </p>
       </div>
 
-      <div class="manual-rule">
+      <div class="manual-rule warning-rule">
         <span class="manual-number">05</span>
         <p>
-          대상 날짜의 폴더가 바탕화면에 표시되기 전까지
+          대상 날짜의 폴더를 육안으로 확인하기 전까지
           컴퓨터를 종료하지 마십시오.
         </p>
       </div>
 
-      <div class="manual-rule warning-rule">
-        <span class="manual-number">06</span>
-        <p>
-         대상 날짜의 폴더를 육안으로 확인하셨다면,
-         현재 상태를 확인하십시오.
-        </p>
-      </div>
 
       <div class="manual-result">
         <div class="manual-result-label">
@@ -429,8 +423,9 @@ DAY 1001 is ready.
 Opening personal message...</pre>
 
       <!-- 편지 내용을 수정하려면 아래 letter-content 안의 글을 변경하세요. -->
-      <div id="letter-content" class="letter-content hidden">민혁아, 어땠어?
-설마 무서웠던 건 아니지?
+      <div id="letter-content" class="letter-content hidden">민혁아, 여기까지 잘 왔네.
+
+...설마 무서웠던 건 아니지?
 재밌었으면 좋겠다!
 
 1000일 동안 우리 사진 진짜 많이 찍었지.
@@ -452,6 +447,37 @@ Opening personal message...</pre>
 - 윤서</div>
     </div>
   </div>
+  <!-- DAY1001 엔딩 편지 -->
+  <div id="letter-window" class="app-window letter-window hidden">
+    ...
+  </div>
+
+
+  <!-- 알 수 없음 메시지 알림 -->
+  <div id="unknown-toast" class="unknown-toast" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true">
+    <div class="unknown-toast-title">(알 수 없음)</div>
+    <p>새로운 메시지가 도착하였습니다.</p>
+  </div>
+
+  <!-- 하단 작업표시줄 -->
+  <div id="taskbar" class="taskbar">
+
+    <button class="start-button">
+      <img
+        src="assets/icons/windows-start.png"
+        alt=""
+        class="start-logo"
+      >
+      <span>Start</span>
+    </button>
+
+    <div class="taskbar-right">
+      <span class="taskbar-speaker">🔊</span>
+      <span class="taskbar-date">2026-10-02</span>
+    </div>
+
+  </div>
+
 
 </main>
 
