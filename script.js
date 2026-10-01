@@ -22,12 +22,12 @@ let letterOpened = false;
 let letterTimer = null;
 
 const bootLines = [
-  "Initializing DAY1000 system...",
+  "Initializing DAY999 system...",
   "Checking current date status...",
   "Preparing day transition...",
   "Unclassified record detected.",
   "DAY500 checkpoint detected.",
-  "DAY 1001 transition suspended.",
+  "DAY 1000 transition suspended.",
   "Preparing desktop environment..."
 ];
 
@@ -77,7 +77,7 @@ function finishBoot() {
 
    bootStatus.innerHTML = `
   SYSTEM READY.<br><br>
-  Current Day: 1000<br>
+  Current Day: 999<br>
   Next Day: LOCKED<br>
   Unclassified Records: 1
 `;
@@ -317,13 +317,13 @@ const chats = {
     {
       type: "received",
       text:
-`DAY1000 ARCHIVE CONNECTION ESTABLISHED.`
+`DAY999 ARCHIVE CONNECTION ESTABLISHED.`
     },
 
     {
       type: "received",
       text:
-`DAY 1000 종료 과정에서
+`DAY 999 종료 과정에서
 분류되지 않은 기록이 감지되었습니다.`
     },
 
@@ -331,7 +331,7 @@ const chats = {
       type: "received",
       text:
 `해당 기록이 처리되기 전까지
-DAY 1001로의 전환은 보류됩니다.`
+DAY 1000으로의 전환은 보류됩니다.`
     },
 
     {
@@ -622,7 +622,7 @@ albumThumbs.forEach(thumb => {
 
 
 /* =========================
-   DAY1001 기록 이동
+   DAY1000 기록 이동
 ========================= */
 
 albumPreview.draggable = false;
@@ -672,26 +672,26 @@ day1001Icon.addEventListener("drop", event => {
   desktop.classList.remove("corrupted", "corrupted-deep");
 
   moveStatus.textContent = "기록 이동 중...";
-  moveDetail.textContent = "DAY 1000 → DAY 1001";
+  moveDetail.textContent = "DAY 999 → DAY 1000";
   moveNotice.classList.remove("hidden");
 
   setTimeout(() => {
 
     moveStatus.textContent = "이동 완료";
-    moveDetail.textContent = "DAY 1000 종료 조건이 충족되었습니다.";
+    moveDetail.textContent = "DAY 999 종료 조건이 충족되었습니다.";
 
     chats.unknown.messages.push(
       { type: "divider", text: "새 메시지" },
       { type: "received", text: "기록 이동이 완료되었습니다." },
-      { type: "received", text: "DAY 1000 종료 조건이 충족되었습니다." },
-      { type: "received", text: "DAY 1001 전환을 준비합니다." }
+      { type: "received", text: "DAY 999 종료 조건이 충족되었습니다." },
+      { type: "received", text: "DAY 1000 전환을 준비합니다." }
     );
     showUnknownToast();
 
     setTimeout(() => {
       moveNotice.classList.add("hidden");
       day1001Icon.querySelector("img").src = "assets/icons/letter.png";
-      day1001Icon.querySelector("img").alt = "DAY1001 편지";
+      day1001Icon.querySelector("img").alt = "DAY1000 편지";
       day1001Icon.classList.add("letter-ready");
       letterReady = true;
     }, 2000);
@@ -881,7 +881,7 @@ DAY 500 종료:
 
 
 다음 확인 지점:
-DAY 1000`
+DAY 999`
   },
 
 
@@ -1037,7 +1037,7 @@ function openInternet() {
           day1001Icon.classList.add("show");
           unknownPhotoThumb.draggable = !unknownPhotoMoved;
 
-          /* DAY1001 폴더 생성 후 마지막 지시 추가 */
+          /* DAY1000 폴더 생성 후 마지막 지시 추가 */
           if (!finalInstructionAdded) {
 
             finalInstructionAdded = true;
@@ -1072,7 +1072,7 @@ photo_■■.jpg`
                 type: "received",
                 text:
 `이동 위치:
-DAY1001`
+DAY1000`
               },
 
               {
@@ -1105,7 +1105,7 @@ internetClose.addEventListener("click", event => {
 
 
 /* =========================
-   DAY1001 편지
+   DAY1000 편지
 ========================= */
 
 const letterWindow = document.getElementById("letter-window");
